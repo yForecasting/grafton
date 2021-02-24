@@ -1,0 +1,13 @@
+original;replacement
+giovanni.delou@mail.com;fn1.sn1@mail.com
+john.doe@mail.com;fn2.sn2@mail.com
+bella.ciao@mail.com;fn3.sn3@mail.com
+olivia.popeye@mail.com;fn4.sn4@mail.com
+giovanni;fn1
+john;fn2
+bella;fn3
+olivia;fn4
+delou;sn1
+doe;sn2
+ciao;sn3
+popeye;sn4
