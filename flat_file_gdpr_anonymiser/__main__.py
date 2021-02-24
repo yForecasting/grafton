@@ -13,16 +13,16 @@ def find_one(text, lis):
     else:
       return False
 
-def ff_anonymise(pseudonyms, consent, flatfile, export):
+def ff_anonymise(pseudonyms, consent, flatfile, export, csvsep=";"):
     try:
         # read pseudonyms list
-        ps = pd.read_csv(pseudonyms, sep=";")
+        ps = pd.read_csv(pseudonyms, sep = csvsep)
         # make dicts of pseudonyms
-        d1 = ps.iloc[:, 0:2].set_index('V1').T.to_dict('records')
+        d1 = ps.iloc[:, 0:2].set_index('original').T.to_dict('records')
         d1 = d1[0]
         # read consent list
-        cs = pd.read_csv(consent)
-        cs = cs['x'].to_list()  # list to check, with consent
+        cs = pd.read_csv(consent, sep = csvsep)
+        cs = cs['consent'].to_list()  # list to check, with consent
 
         # read big flat file
         my_file_handle = open(flatfile, "r", errors="surrogateescape")
