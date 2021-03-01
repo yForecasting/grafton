@@ -1,7 +1,8 @@
 # Flat File GDPR Anonymiser
-Flat File GDPR Anonymiser anonymises flat files with an user customisable list and exports data with informed consent only.
 
-This tool works with any extension, but is initially designed to anonymise the file flatfile.csv:
+This package Flat File GDPR Anonymiser can anonymise different input files such as CSV, json, XML, ... It handles the files to read/write as a flat file. In line with the GDPR legislation, the required fields are anonimised, so that any further tracking of the subjects is prevented.   The key of this anonimisation process is provided in a separate file (CSV) and should be securely stored afterwards. In line with GDPR, only records with informed consent are retained. The approval of consent can be provided in a separate CSV file. The use of this package does not guarantee GDPR compliance. This package performs only the steps described above.
+
+Flat File GDPR Anonymiser works with any extension, but is initially designed to anonymise the file flatfile.csv:
 
 1. with a list of replacement values pseudonyms.csv
 2. retaining only users with consent in a list in consent.csv
