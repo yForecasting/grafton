@@ -1,0 +1,8 @@
+README.md
+setup.py
+flat_file_gdpr_anonymiser/__init__.py
+flat_file_gdpr_anonymiser/__main__.py
+flat_file_gdpr_anonymiser.egg-info/PKG-INFO
+flat_file_gdpr_anonymiser.egg-info/SOURCES.txt
+flat_file_gdpr_anonymiser.egg-info/dependency_links.txt
+flat_file_gdpr_anonymiser.egg-info/top_level.txt

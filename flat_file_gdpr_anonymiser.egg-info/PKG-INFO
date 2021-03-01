@@ -1,0 +1,19 @@
+Metadata-Version: 1.2
+Name: flat-file-gdpr-anonymiser
+Version: 0.1
+Summary: Flat File GDPR Anonymiser anonymises flat files with an user customisable csv list.
+Home-page: https://github.com/yForecasting/flat_file_gdpr_anonymiser
+Author: Yves R. Sagaert
+Author-email: yves.r.sagaert@pm.me
+License: GNU GPLv3
+Description: Flat File GDPR Anonymiser anonymises flat files with an user customisable csv list.
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.5
