@@ -2,68 +2,92 @@
 
 import pandas as pd
 
-
-# import csv
-
-def replace_all(text, dic):
-    for i, j in dic.items():
-        text = text.replace(i, j)
+# replace the original data by the anonymised data
+def anonymise_text(text, pseudonyms_dict):
+    # text is the data to anonymise
+    # pseudonyms_dict are dicts of the pseudonyms
+    # return the anonymised text
+    
+    for original_value, replacement_value in pseudonyms_dict.items():
+        text = text.lower().replace(original_value, replacement_value)
     return text
 
-
-def find_one(text, lis):
-    if any(consent_given.lower() in text.lower() for consent_given in lis):
+# check if consent is present
+def consent_present(text, consent_list):
+    # text is the original data
+    # consent_list is a list of users with consent
+    # return if consent is present
+    
+    if any(consent_given.lower() in text.lower() for consent_given in consent_list):
+        # consent is present
         return True
     else:
+        # consent is not present
         return False
 
 
-def ff_anonymise(pseudonyms, consent, flatfile, export, csvsep=";"):
+# anonymise data of flat file
+def ff_anonymise(pseudonyms_file, consent_file, flat_file, export_file, csvsep=";"):
+    # pseudonyms_file is a file containing a list of original values and their replacement values
+    # consent_file is a file retaining only users with consent
+    # flat_file is a file containing data to anonymise
+    # export_file is a file containing anonymised data at the end
+    # the default csv seperator is ";"
+    
     line1 = 0
     line = 0
+    
+    # anonymisation process
     try:
+        
         # read pseudonyms list
-        ps = pd.read_csv(pseudonyms, sep=csvsep)
+        pseudonyms_list = pd.read_csv(pseudonyms_file, sep=csvsep)
+        
         # make dicts of pseudonyms
-        d1 = ps.iloc[:, 0:2].set_index('original').T.to_dict('records')
-        d1 = d1[0]
-        # read consent list
-        cs = pd.read_csv(consent, sep=csvsep)
-        cs = cs['consent_given'].to_list()  # list to check, with consent
+        pseudonyms_dict = pseudonyms_list.iloc[:, 0:2].set_index('original').T.to_dict('records')[0]
 
-        # read big flat file
-        my_file_handle = open(flatfile, "r", errors="surrogateescape")
-        print("File read.")
+        # read consent list
+        consent_list = pd.read_csv(consent_file, sep=csvsep)
+        consent_list = consent_list.iloc[:, 0].to_list()  # list to check, with consent
+        
+        # read original data file
+        original_data = open(flat_file, "r", errors="surrogateescape")
+        print("Original data read.")
+        
         # make export file
-        new_file = open(export, mode="w", errors="surrogateescape")
-        print("export started.")
-        print("Wait for end of script signature !")
-        # do the replacement string logic
-        for line in my_file_handle:
+        anonymised_data = open(export_file, mode="w", errors="surrogateescape")
+        print("Export started.")
+        print("Wait for the end of script signature!")
+        
+        # anonymise data
+        for line in original_data:
             line1 = line
-            if find_one(line, cs):
-                li = replace_all(line, d1)
-                new_file.write(li)
+            if consent_present(line, consent_list):
+                anonymised_line = anonymise_text(line, pseudonyms_dict)
+                anonymised_data.write(anonymised_line)
+                
         # close the files properly
-        my_file_handle.close()
-        new_file.close()
+        original_data.close()
+        anonymised_data.close()
+        
         # end of script
         print("Flat File GDPR Anonymiser complete.")
     except IOError:
-        print("File not found or path is incorrect")
+        # IOError
+        print("File not found or path is incorrect.")
     except UnicodeDecodeError:
+        # UnicodeDecodeError
         print("Error at line:")
         print(line1)
         print(line)
         pass
     finally:
-        print("---- end of script ---- ")
+        print("---- end of script ----")
 
 
 def main():
-    ff_anonymise(pseudonyms="pseudonyms.csv", consent="consent.csv", flatfile="flatfile.csv",
-                 export="flatfile_dataexport_consent.csv")
-
+    # execute anonymisation process
+    ff_anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv")
 
 if __name__ == '__main__':
     main()
