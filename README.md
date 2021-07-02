@@ -37,7 +37,7 @@ The script has default names for all the lists and files to anonymise, but these
 To anonymise flat files with grafton use the function anonymise:
 
 ```
-anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv")
+anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv", enable_grafton_fallback=True)
 ```
 
 Or execute main.py to deploy the code with default variables:
