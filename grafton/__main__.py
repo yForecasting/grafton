@@ -211,5 +211,5 @@ def main():
     anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv", enable_grafton_fallback=True)
 
 if __name__ == '__main__':
-    main()
+    # main()
     anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv", enable_grafton_fallback=True)
