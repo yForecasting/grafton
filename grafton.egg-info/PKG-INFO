@@ -1,6 +1,6 @@
 Metadata-Version: 1.2
 Name: grafton
-Version: 0.1.1
+Version: 0.1.3
 Summary: grafton anonymises data in any input file using an encoding key and informed consent list.
 Home-page: https://github.com/yForecasting/grafton
 Author: Yves R. Sagaert
