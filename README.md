@@ -23,21 +23,21 @@ The script has default names for all the lists and files to anonymise, but these
 3. Activate the environment
 
     ```
-    $> source flat_file_gdpr_anonymiser/bin/activate
+    $> source grafton/bin/activate
     ```
 
 4. Install the package with pip
 
      ```
-    $> pip install flat_file_gdpr_anonymiser
+    $> pip install grafton
      ```
 	 
 ## Usage example for cli
 
-To anonymise flat files with grafton use the function ff_anonymise:
+To anonymise flat files with grafton use the function anonymise:
 
 ```
-ff_anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv")
+anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv")
 ```
 
 Or execute main.py to deploy the code with default variables:
