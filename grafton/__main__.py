@@ -8,7 +8,7 @@ import ast
 from json.decoder import JSONDecodeError
 from random import randint, uniform
 
-# randomise number converter
+# randomise number converter (integer or float)
 def randomise_number_converter(original_number, boundary_low, boundary_high, number_digits = 2):
     # original_number is the number to randomise
     # boundary_low is the minimum value for the randomised value
