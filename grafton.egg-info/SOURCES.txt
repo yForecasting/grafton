@@ -1,3 +1,4 @@
+LICENSE
 README.md
 setup.py
 grafton/__init__.py
