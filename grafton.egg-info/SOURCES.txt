@@ -2,8 +2,9 @@ LICENSE
 README.md
 setup.py
 grafton/__init__.py
-grafton/__main__.py
+grafton/anonymiser.py
 grafton.egg-info/PKG-INFO
 grafton.egg-info/SOURCES.txt
 grafton.egg-info/dependency_links.txt
+grafton.egg-info/requires.txt
 grafton.egg-info/top_level.txt
