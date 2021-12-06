@@ -1,12 +1,11 @@
-Metadata-Version: 1.2
+Metadata-Version: 2.1
 Name: grafton
-Version: 0.1.6
+Version: 0.1.7
 Summary: grafton anonymises data in any input file using an encoding key and informed consent list.
 Home-page: https://github.com/yForecasting/grafton
-Author: Yves R. Sagaert, Ruben Vanhecke
-Author-email: yves.r.sagaert@pm.me
+Author: Yves R. Sagaert
+Author-email: yves.r.sagaert@gmail.com
 License: GNU GPLv3
-Description: This package grafton can anonymise different input files such as CSV, json, XML, ... It handles the files to read/write as a flat file. In line with the GDPR legislation, the required fields are anonimised, so that any further tracking of the subjects is prevented. The key of this anonimisation process is provided in a separate file (CSV) and should be securely stored afterwards. In line with GDPR, only records with informed consent are retained. The approval of consent can be provided in a separate CSV file. The use of this package does not guarantee GDPR compliance. This package performs only the steps described above.
 Platform: UNKNOWN
 Classifier: Development Status :: 4 - Beta
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
@@ -17,3 +16,125 @@ Classifier: Topic :: Software Development :: Libraries
 Classifier: Topic :: Software Development :: Libraries :: Python Modules
 Classifier: Intended Audience :: Developers
 Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/img/grafton_hex.svg" width="180" height="180">	
+</p>
+
+
+# Grafton
+
+<img src="https://img.shields.io/badge/Maintained%20by-Vives%20AI%20Lab-red"> [![Downloads](https://static.pepy.tech/personalized-badge/grafton?period=total&units=international_system&left_color=grey&right_color=blue&left_text=downloads)](https://pepy.tech/project/grafton) <img src="https://img.shields.io/badge/python-v3.7%2B-blue"> <img src="https://img.shields.io/badge/pypi-v0.1.7-blue">
+
+
+Grafton is a GDPR anonymizer for any file using informed consent, encoding key and randomising numbers
+
+It can anonymize various input files such as CSV, json, XML or other flat files. In line with the GDPR legislation, the mandatory fields have been anonymized, so that any detection of the subjects is prevented. 
+
+The encryption key for this anonymization process is provided in a separate file (CSV) and must be stored securely afterwards. In accordance with the GDPR, data is only retained when informed consent is given. Consent can be provided in a separate CSV file. The tracked numbers can also be randomized within a similar order of magnitude. 
+
+**The use of this package does not guarantee compliance with the GDPR. This package only performs the steps described above.**
+
+This package is developed by the AI team at [VIVES University of Applied Sciences](https://www.vives.be/en/research/centre-expertise-business-management) and is used in our research on [demand forecasting](https://yvesrsagaert.wordpress.com/).
+
+___
+
+Grafton works with any extension, but is initially designed to anonymise the file flatfile.csv:
+
+1. with a list of replacement values in the key file: pseudonyms.csv
+2. retaining only users with consent in a list in the consent file: consent.csv
+
+The anonymised file export.csv (any extension possible again) is then saved to the current directory.
+
+The script has default names for all the lists and files to anonymise, but these can be altered if needed.
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/img/grafton_flowchart.png" width="420" height="200">	
+</p>
+
+## Getting started
+
+### Installation
+
+1. Install python3.7+
+2. Create a virtual env where you want to install:
+
+    ```
+    $> python3 -m venv grafton
+    ```
+
+3. Activate the environment
+
+    ```
+    $> source grafton/bin/activate
+    ```
+
+4. Install the package with pip
+
+     ```
+    $> pip install grafton
+     ```
+	 
+### Randomize numeric entries
+```python
+from grafton import randomise_number
+
+int_number = 5
+randomized_number = randomise_number(int_number)
+```
+
+### Anonymize files of any format
+
+```python
+from grafton import anonymise
+import pandas as pd
+```
+
+```python
+# The pseudoynyms file
+pseudonyms_url = 'https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/pseudonyms.csv'
+pseudonyms_file = pd.read_csv(pseudonyms_url, sep = ';')
+
+# The consent file with the entries they gave their consent
+consent_url = 'https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/consent.csv'
+consent_file = pd.read_csv(consent_url)
+
+# The location of the flatfile to be anonymized
+flat_file = 'https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/flatfile.csv'
+
+# The location of the export file
+export_file = '/content/export.csv'
+
+anonymise(pseudonyms_file = pseudonyms_url, consent_file = consent_url, flat_file = flat_file, export_file = export_file)
+```
+````
+Original data read.
+Export started.
+Wait for the end of script signature!
+Grafton complete.
+---- end of script ----
+````
+
+## Contributing
+
+Contribution is welcomed! 
+
+Start by reviewing the [contribution guidelines](https://github.com/yForecasting/grafton/blob/main/CONTRIBUTING.md). After that, take a look at a [good first issue](https://github.com/yForecasting/grafton/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
+
+
+## Disclaimer
+`grafton` does not save, publish or share with anyone any identifiable user information.  
+The use of this package does not guarantee compliance with the GDPR. This package only performs the steps described above. 
+
+## Support
+
+The [AI team](https://yforecasting.github.io/) at VIVES University of Applied Sciences builds and maintains grafton to make it simple and accessible. We are using this software in our research on [demand forecasting](https://yvesrsagaert.wordpress.com/). A special thanks to Ruben Vanhecke and Filotas Theodosiou for their contribution.
+
+
+
+
+
+
+

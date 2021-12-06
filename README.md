@@ -62,14 +62,13 @@ from grafton import randomise_number
 
 int_number = 5
 randomized_number = randomise_number(int_number)
-```	
+```
 
 ### Anonymize files of any format
 
 ```python
 from grafton import anonymise
 import pandas as pd
-
 ```
 
 ```python
@@ -110,7 +109,7 @@ The use of this package does not guarantee compliance with the GDPR. This packag
 
 ## Support
 
-The [AI team](https://yforecasting.github.io/) at Vives builds and maintains grafton to make it simple and accessible. We are using this software in our research on [demand forecasting](https://yvesrsagaert.wordpress.com/). A special thanks to Ruben Vanhecke and Filotas Theodosiou for their contribution.
+The [AI team](https://yforecasting.github.io/) at VIVES University of Applied Sciences builds and maintains grafton to make it simple and accessible. We are using this software in our research on [demand forecasting](https://yvesrsagaert.wordpress.com/). A special thanks to Ruben Vanhecke and Filotas Theodosiou for their contribution.
 
 
 
