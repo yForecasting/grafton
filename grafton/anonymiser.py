@@ -93,7 +93,7 @@ def consent_present(text, consent_list):
         return False
 
 # anonymise CSV file, XML file
-def anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file):
+def anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file, header):
     # pseudonyms_dict is a dict containing original values (key) and their replacement values (value)
     # consent_list is a list retaining only users with consent
     # flat_file is a file containing data to anonymise
@@ -110,11 +110,17 @@ def anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file):
 
     # anonymise data
     for line in original_data:
+        # if we have a header
+        if header:
+            header = False
+            # writing
+            anonymised_line = anonymise_text(line, pseudonyms_dict)
+            anonymised_data.write(anonymised_line)
+            continue
+        # if we have consent. Otherwise do nothing
         if consent_present(line, consent_list if len(consent_list) > 0 else pseudonyms_dict):
             anonymised_line = anonymise_text(line, pseudonyms_dict)
             anonymised_data.write(anonymised_line)
-        else:
-            anonymised_data.write(line)
 
     # close the files properly
     original_data.close()
@@ -124,7 +130,7 @@ def anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file):
     print("Grafton complete.")
 
 # anonymise JSON file
-def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file):
+def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file, header ):
     # pseudonyms_dict is a dict containing original values (key) and their replacement values (value)
     # consent_list is a list retaining only users with consent
     # flat_file is a file containing data to anonymise
@@ -143,11 +149,15 @@ def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file):
     # anonymise data
     anonymised_json_data = []
     for line in original_data_loaded:
+        if header:
+            header = False
+            anonymised_line = anonymise_text(line, pseudonyms_dict)
+            anonymised_json_data.append(ast.literal_eval(anonymised_line))
+            continue    
+
         if consent_present(line, consent_list if len(consent_list) > 0 else pseudonyms_dict):
             anonymised_line = anonymise_text(line, pseudonyms_dict)
             anonymised_json_data.append(ast.literal_eval(anonymised_line))
-        else:
-            anonymised_json_data.append(line)
     json.dump(anonymised_json_data, anonymised_data, indent = 4)
 
     # close the files properly
@@ -158,7 +168,7 @@ def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file):
     print("Grafton complete.")
 
 # fallback when file has invalid format (e.g. JSON extension with CSV content)
-def anonymise_fallback(pseudonyms_dict, consent_list, flat_file, export_file):
+def anonymise_fallback(pseudonyms_dict, consent_list, flat_file, export_file, header):
     # pseudonyms_dict is a dict containing original values (key) and their replacement values (value)
     # consent_list is a list retaining only users with consent
     # flat_file is a file containing data to anonymise
@@ -179,11 +189,16 @@ def anonymise_fallback(pseudonyms_dict, consent_list, flat_file, export_file):
     # anonymise data
     line = original_data.readline()
     while line:
+        if header:
+            header = False
+            anonymised_line = anonymise_text(line, pseudonyms_dict)
+            anonymised_data.write(anonymised_line)
+            continue
+
         if consent_present(line, consent_list if len(consent_list) > 0 else pseudonyms_dict):
             anonymised_line = anonymise_text(line, pseudonyms_dict)
             anonymised_data.write(anonymised_line)
-        else:
-            anonymised_data.write(line)
+
         line = original_data.readline()
 
     # close the files properly
@@ -197,7 +212,7 @@ def anonymise_fallback(pseudonyms_dict, consent_list, flat_file, export_file):
     print("Grafton complete.")
 
 # converter for opening a file following the extension of that file
-def anonymise_file_converter(pseudonyms_dict, consent_list, flat_file, export_file):
+def anonymise_file_converter(pseudonyms_dict, consent_list, flat_file, export_file, header):
     # pseudonyms_dict is a dict containing original values (key) and their replacement values (value)
     # consent_list is a list retaining only users with consent
     # flat_file is a file containing data to anonymise
@@ -208,15 +223,15 @@ def anonymise_file_converter(pseudonyms_dict, consent_list, flat_file, export_fi
 
     # CSV extension
     if file_extension == ".csv":
-        anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file)
+        anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file, header)
 
     # JSON extension
     elif file_extension == ".json":
-        anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file)
+        anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file, header)
 
     # XML extension
     elif file_extension == ".xml":
-        anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file)
+        anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file, header)
 
     # extension not supported
     else:
@@ -224,7 +239,7 @@ def anonymise_file_converter(pseudonyms_dict, consent_list, flat_file, export_fi
         print("Grafton not executed.")
 
 # anonymisation process
-def anonymise(pseudonyms_file, consent_file, flat_file, export_file, enable_grafton_fallback=True):
+def anonymise(pseudonyms_file, consent_file, flat_file, export_file, header = True, enable_grafton_fallback=True):
     # pseudonyms_file is a file containing original values and their replacement values
     # consent_file is a file retaining only users with consent
     # flat_file is a file containing data to anonymise
@@ -249,7 +264,7 @@ def anonymise(pseudonyms_file, consent_file, flat_file, export_file, enable_graf
             pass
 
         # execute anonymisation process
-        anonymise_file_converter(pseudonyms_dict, consent_list, flat_file, export_file)
+        anonymise_file_converter(pseudonyms_dict, consent_list, flat_file, export_file, header)
     except IOError:
         # IOError
         print("File not found or path is incorrect.")
@@ -270,5 +285,5 @@ def anonymise(pseudonyms_file, consent_file, flat_file, export_file, enable_graf
 # main
 def main():
     # execute anonymisation process
-    anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv", enable_grafton_fallback=True)
+    anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv", header = True, enable_grafton_fallback=True)
     randomise_number(15.5)
