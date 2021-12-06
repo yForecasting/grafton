@@ -1,6 +1,8 @@
-# grafton
+# Grafton
 
-This package grafton can anonymise different input files such as CSV, json, XML, ... It handles the files to read/write as a flat file. In line with the GDPR legislation, the required fields are anonimised, so that any further tracking of the subjects is prevented.   The key of this anonimisation process is provided in a separate file (CSV) and should be securely stored afterwards. In line with GDPR, only records with informed consent are retained. The approval of consent can be provided in a separate CSV file. The use of this package does not guarantee GDPR compliance. This package performs only the steps described above.
+Grafton is a GDPR anonymizer for any file using informed consent, encoding key and randomising numbers
+
+It can anonymize various input files such as CSV, json, XML or other flat files. In line with the GDPR legislation, the mandatory fields have been anonymized, so that any detection of the subjects is prevented. The encryption key for this anonymization process is provided in a separate file (CSV) and must be stored securely afterwards. In accordance with the GDPR, data is only retained when informed consent is given. Consent can be provided in a separate CSV file. The tracked numbers can also be randomized within a similar order of magnitude. The use of this package does not guarantee compliance with the GDPR. This package only performs the steps described above. This package is developed by the AI team at [VIVES University of Applied Sciences](https://www.vives.be/en/research/centre-expertise-business-management).
 
 Grafton works with any extension, but is initially designed to anonymise the file flatfile.csv:
 
@@ -32,19 +34,23 @@ The script has default names for all the lists and files to anonymise, but these
     $> pip install grafton
      ```
 	 
-## Usage example for cli
 
-To anonymise flat files with grafton use the function anonymise:
 
-```
-anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv", enable_grafton_fallback=True)
-```
+## Contributing
 
-Or execute main.py to deploy the code with default variables:
+Contribution is welcomed! 
 
-```
-main.py
-```
+Start by reviewing the [contribution guidelines](CONTRIBUTING.md). After that, take a look at a [good first issue](https://github.com/yForecasting/grafton/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
+
+
+## Disclaimer
+`grafton` does not save, publish or share with anyone any identifiable user information.  
+The use of this package does not guarantee compliance with the GDPR. This package only performs the steps described above. 
+
+## Support
+
+The [AI team](https://www.vives.be/nl/onderzoek/business-management/ai-voor-sales-predictie-een-omgeving-met-beperkte-historische-data) at Vives builds and maintains grafton to make it simple and accessible. A special thanks to Ruben Vanhecke and Filotas Theodosiou for their contribution.
+
 
 
 
