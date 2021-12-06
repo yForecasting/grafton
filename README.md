@@ -30,7 +30,7 @@ The anonymised file (any extension possible again) is then saved to the current 
 The script has default names for all the lists and files to anonymise, but these can be altered if needed.
 
 <a href="https://colab.research.google.com/drive/1hKrKBkBhAyV49zFwAQh0QPZ2UPhGW-gA?usp=sharing" title="Docs">
-    <img src="https://dabuttonfactory.com/button.png?t=Read+the+Docs&f=Calibri-Bold&ts=25&tc=fff&hp=45&vp=20&c=11&bgt=unicolored&bgc=15d798" align="right" width="140">
+    <img src="https://dabuttonfactory.com/button.png?t=Read+the+Docs&f=Calibri-Bold&ts=25&tc=fff&hp=45&vp=20&c=round&bgt=unicolored&bgc=6bbf47&bs=2&bc=000" align="right" width="140">
 </a>
 
 ## Installation
