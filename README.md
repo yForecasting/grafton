@@ -3,6 +3,8 @@
 </p>
 
 
+<img src="https://img.shields.io/badge/Maintained%20by-Vives%20AI%20Lab-red">
+
 # Grafton
 
 Grafton is a GDPR anonymizer for any file using informed consent, encoding key and randomising numbers
