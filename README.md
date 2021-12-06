@@ -18,7 +18,8 @@ The encryption key for this anonymization process is provided in a separate file
 
 This package is developed by the AI team at [VIVES University of Applied Sciences](https://www.vives.be/en/research/centre-expertise-business-management).
 
----
+___
+
 Grafton works with any extension, but is initially designed to anonymise the file flatfile.csv:
 
 1. with a list of replacement values pseudonyms.csv
@@ -49,7 +50,46 @@ The script has default names for all the lists and files to anonymise, but these
     $> pip install grafton
      ```
 	 
+## Randomize numeric entries
+```python
+from grafton import randomise_number
 
+int_number = 5
+randomized_number = randomise_number(int_number)
+```	
+
+## Anonymize files of any format
+
+```python
+from grafton import anonymise
+import pandas as pd
+
+```
+
+```python
+# The pseudoynyms file
+pseudonyms_url = 'https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/pseudonyms.csv'
+pseudonyms_file = pd.read_csv(pseudonyms_url, sep = ';')
+
+# The consent file with the entries they gave their consent
+consent_url = 'https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/consent.csv'
+consent_file = pd.read_csv(consent_url)
+
+# The location of the flatfile to be anonymized
+flat_file = '/content/flatfile.csv'
+
+# The location of the export file
+export_file = '/content/export.csv'
+
+anonymise(pseudonyms_file = pseudonyms_url, consent_file = consent_url, flat_file = flat_file, export_file = export_file)
+```
+````
+Original data read.
+Export started.
+Wait for the end of script signature!
+Grafton complete.
+---- end of script ----
+````
 
 ## Contributing
 
