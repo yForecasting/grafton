@@ -30,7 +30,7 @@ The anonymised file export.csv (any extension possible again) is then saved to t
 The script has default names for all the lists and files to anonymise, but these can be altered if needed.
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/img/grafton_flowchart.png" width="360" height="180">	
+	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/img/grafton_flowchart.png" width="420" height="200">	
 </p>
 
 ## Getting started
