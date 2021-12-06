@@ -1,3 +1,8 @@
+<p align="center">
+	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/grafton_hex.svg" width="150" height="150">
+</p>
+
+
 # Grafton
 
 Grafton is a GDPR anonymizer for any file using informed consent, encoding key and randomising numbers
