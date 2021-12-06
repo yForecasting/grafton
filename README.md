@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/grafton_hex.svg" width="180" height="180">	
+	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/img/grafton_hex.svg" width="180" height="180">	
 </p>
 
 
@@ -22,12 +22,16 @@ ___
 
 Grafton works with any extension, but is initially designed to anonymise the file flatfile.csv:
 
-1. with a list of replacement values pseudonyms.csv
-2. retaining only users with consent in a list in consent.csv
+1. with a list of replacement values in the key file: pseudonyms.csv
+2. retaining only users with consent in a list in the consent file: consent.csv
 
-The anonymised file (any extension possible again) is then saved to the current directory and named by default flatfile_dataexport_consent.csv.
+The anonymised file export.csv (any extension possible again) is then saved to the current directory.
 
 The script has default names for all the lists and files to anonymise, but these can be altered if needed.
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/img/grafton_flowchart.png" width="360" height="180">	
+</p>
 
 ## Getting started
 
