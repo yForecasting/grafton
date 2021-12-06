@@ -16,7 +16,7 @@ The encryption key for this anonymization process is provided in a separate file
 
 **The use of this package does not guarantee compliance with the GDPR. This package only performs the steps described above.**
 
-This package is developed by the AI team at [VIVES University of Applied Sciences](https://www.vives.be/en/research/centre-expertise-business-management).
+This package is developed by the AI team at [VIVES University of Applied Sciences](https://www.vives.be/en/research/centre-expertise-business-management) and is used in our research on [demand forecasting](https://yvesrsagaert.wordpress.com/).
 
 ___
 
@@ -29,8 +29,9 @@ The anonymised file (any extension possible again) is then saved to the current 
 
 The script has default names for all the lists and files to anonymise, but these can be altered if needed.
 
+## Getting started
 
-## Installation
+### Installation
 
 1. Install python3.7+
 2. Create a virtual env where you want to install:
@@ -51,7 +52,7 @@ The script has default names for all the lists and files to anonymise, but these
     $> pip install grafton
      ```
 	 
-## Randomize numeric entries
+### Randomize numeric entries
 ```python
 from grafton import randomise_number
 
@@ -59,7 +60,7 @@ int_number = 5
 randomized_number = randomise_number(int_number)
 ```	
 
-## Anonymize files of any format
+### Anonymize files of any format
 
 ```python
 from grafton import anonymise
@@ -77,7 +78,7 @@ consent_url = 'https://raw.githubusercontent.com/yForecasting/grafton/main/graft
 consent_file = pd.read_csv(consent_url)
 
 # The location of the flatfile to be anonymized
-flat_file = '/content/flatfile.csv'
+flat_file = 'https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/flatfile.csv'
 
 # The location of the export file
 export_file = '/content/export.csv'
@@ -96,7 +97,7 @@ Grafton complete.
 
 Contribution is welcomed! 
 
-Start by reviewing the [contribution guidelines](CONTRIBUTING.md). After that, take a look at a [good first issue](https://github.com/yForecasting/grafton/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
+Start by reviewing the [contribution guidelines](https://github.com/yForecasting/grafton/blob/main/CONTRIBUTING.md). After that, take a look at a [good first issue](https://github.com/yForecasting/grafton/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
 
 
 ## Disclaimer
@@ -105,7 +106,7 @@ The use of this package does not guarantee compliance with the GDPR. This packag
 
 ## Support
 
-The [AI team](https://www.vives.be/nl/onderzoek/business-management/ai-voor-sales-predictie-een-omgeving-met-beperkte-historische-data) at Vives builds and maintains grafton to make it simple and accessible. A special thanks to Ruben Vanhecke and Filotas Theodosiou for their contribution.
+The [AI team](https://yforecasting.github.io/) at Vives builds and maintains grafton to make it simple and accessible. We are using this software in our research on [demand forecasting](https://yvesrsagaert.wordpress.com/). A special thanks to Ruben Vanhecke and Filotas Theodosiou for their contribution.
 
 
 
