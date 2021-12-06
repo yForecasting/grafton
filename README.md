@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/grafton_hex.svg" width="150" height="150">	
+	<img src="https://raw.githubusercontent.com/yForecasting/grafton/main/grafton/grafton_hex.svg" width="180" height="180">	
 </p>
 
 
