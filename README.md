@@ -10,8 +10,15 @@
 
 Grafton is a GDPR anonymizer for any file using informed consent, encoding key and randomising numbers
 
-It can anonymize various input files such as CSV, json, XML or other flat files. In line with the GDPR legislation, the mandatory fields have been anonymized, so that any detection of the subjects is prevented. The encryption key for this anonymization process is provided in a separate file (CSV) and must be stored securely afterwards. In accordance with the GDPR, data is only retained when informed consent is given. Consent can be provided in a separate CSV file. The tracked numbers can also be randomized within a similar order of magnitude. The use of this package does not guarantee compliance with the GDPR. This package only performs the steps described above. This package is developed by the AI team at [VIVES University of Applied Sciences](https://www.vives.be/en/research/centre-expertise-business-management).
+It can anonymize various input files such as CSV, json, XML or other flat files. In line with the GDPR legislation, the mandatory fields have been anonymized, so that any detection of the subjects is prevented. 
 
+The encryption key for this anonymization process is provided in a separate file (CSV) and must be stored securely afterwards. In accordance with the GDPR, data is only retained when informed consent is given. Consent can be provided in a separate CSV file. The tracked numbers can also be randomized within a similar order of magnitude. 
+
+**The use of this package does not guarantee compliance with the GDPR. This package only performs the steps described above.**
+
+This package is developed by the AI team at [VIVES University of Applied Sciences](https://www.vives.be/en/research/centre-expertise-business-management).
+
+---
 Grafton works with any extension, but is initially designed to anonymise the file flatfile.csv:
 
 1. with a list of replacement values pseudonyms.csv
