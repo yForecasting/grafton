@@ -8,8 +8,9 @@ import ast
 from json.decoder import JSONDecodeError
 from random import randint, uniform
 
+
 # randomise number converter (integer or float)
-def randomise_number_converter(original_number, boundary_low, boundary_high, number_digits = 2):
+def randomise_number_converter(original_number, boundary_low, boundary_high, number_digits=2):
     # original_number is the number to randomise
     # boundary_low is the minimum value for the randomised value
     # boundary_high is the maximum value for the randomised value
@@ -22,6 +23,7 @@ def randomise_number_converter(original_number, boundary_low, boundary_high, num
     # float
     elif isinstance(original_number, float):
         return round(uniform(boundary_low, boundary_high), number_digits)
+
 
 # randomise number (integer or float)
 def randomise_number(original_number):
@@ -41,23 +43,28 @@ def randomise_number(original_number):
 
         # > 1000
         if original_number > boundary_four:
-            randomised_number = randomise_number_converter(original_number, boundary_four, boundary_four * 5) # >= 1000 and <= 5000
+            randomised_number = randomise_number_converter(original_number, boundary_four,
+                                                           boundary_four * 5)  # >= 1000 and <= 5000
 
         # > 150 and <= 1000
         elif original_number > boundary_three and original_number <= boundary_four:
-            randomised_number = randomise_number_converter(original_number, boundary_three, boundary_four + 200) # >= 150 and <= 1200
+            randomised_number = randomise_number_converter(original_number, boundary_three,
+                                                           boundary_four + 200)  # >= 150 and <= 1200
 
         # > 50 and <= 150
         elif original_number > boundary_two and original_number <= boundary_three:
-            randomised_number = randomise_number_converter(original_number, boundary_two + 1, boundary_three + 50) # >= 50 and <= 200
+            randomised_number = randomise_number_converter(original_number, boundary_two + 1,
+                                                           boundary_three + 50)  # >= 50 and <= 200
 
         # > 10 and <= 50
         elif original_number > boundary_one and original_number <= boundary_two:
-            randomised_number = randomise_number_converter(original_number, boundary_one + 1, boundary_two + 10) # > 10 and <= 60
+            randomised_number = randomise_number_converter(original_number, boundary_one + 1,
+                                                           boundary_two + 10)  # > 10 and <= 60
 
         # <= 10 and >= 0
         elif original_number >= boundary_zero and original_number <= boundary_one:
-            randomised_number = randomise_number_converter(original_number, boundary_zero, boundary_one * 2) # >= 0 and <= 20
+            randomised_number = randomise_number_converter(original_number, boundary_zero,
+                                                           boundary_one * 2)  # >= 0 and <= 20
 
         # Randomising process is not successful
         if randomised_number == None:
@@ -69,6 +76,7 @@ def randomise_number(original_number):
 
     return randomised_number
 
+
 # replace the original data by the anonymised data
 def anonymise_text(text, pseudonyms_dict):
     # text is the data to anonymise
@@ -78,6 +86,7 @@ def anonymise_text(text, pseudonyms_dict):
     for original_value, replacement_value in pseudonyms_dict.items():
         text = str(text).lower().replace(original_value, replacement_value)
     return text
+
 
 # check if consent is present
 def consent_present(text, consent_list):
@@ -91,6 +100,7 @@ def consent_present(text, consent_list):
     else:
         # consent is not present
         return False
+
 
 # anonymise CSV file, XML file
 def anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file, header):
@@ -128,8 +138,9 @@ def anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file, header
     # grafton complete
     print("Grafton complete.")
 
+
 # anonymise JSON file
-def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file, header ):
+def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file, header):
     # pseudonyms_dict is a dict containing original values (key) and their replacement values (value)
     # consent_list is a list retaining only users with consent
     # flat_file is a file containing data to anonymise
@@ -150,13 +161,14 @@ def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file, h
     for line in original_data_loaded:
         if header:
             header = False
-            anonymised_json_data.append(ast.literal_eval(line))
-            continue    
+            # anonymised_json_data.append(ast.literal_eval(line))
+            anonymised_json_data.append(line)
+            continue
 
         if consent_present(line, consent_list if len(consent_list) > 0 else pseudonyms_dict):
             anonymised_line = anonymise_text(line, pseudonyms_dict)
             anonymised_json_data.append(ast.literal_eval(anonymised_line))
-    json.dump(anonymised_json_data, anonymised_data, indent = 4)
+    json.dump(anonymised_json_data, anonymised_data, indent=4)
 
     # close the files properly
     original_data.close()
@@ -164,6 +176,7 @@ def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file, h
 
     # grafton complete
     print("Grafton complete.")
+
 
 # fallback when file has invalid format (e.g. JSON extension with CSV content)
 def anonymise_fallback(pseudonyms_dict, consent_list, flat_file, export_file, header):
@@ -208,6 +221,7 @@ def anonymise_fallback(pseudonyms_dict, consent_list, flat_file, export_file, he
     # grafton complete
     print("Grafton complete.")
 
+
 # converter for opening a file following the extension of that file
 def anonymise_file_converter(pseudonyms_dict, consent_list, flat_file, export_file, header):
     # pseudonyms_dict is a dict containing original values (key) and their replacement values (value)
@@ -235,8 +249,9 @@ def anonymise_file_converter(pseudonyms_dict, consent_list, flat_file, export_fi
         print("Extension not supported.")
         print("Grafton not executed.")
 
+
 # anonymisation process
-def anonymise(pseudonyms_file, consent_file, flat_file, export_file, header = True, enable_grafton_fallback=True):
+def anonymise(pseudonyms_file, consent_file, flat_file, export_file, header=True, enable_grafton_fallback=True):
     # pseudonyms_file is a file containing original values and their replacement values
     # consent_file is a file retaining only users with consent
     # flat_file is a file containing data to anonymise
@@ -279,8 +294,10 @@ def anonymise(pseudonyms_file, consent_file, flat_file, export_file, header = Tr
     finally:
         print("---- end of script ----")
 
+
 # main
 def main():
     # execute anonymisation process
-    anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv", header = True, enable_grafton_fallback=True)
-    #randomise_number(15.5)
+    anonymise(pseudonyms_file="pseudonyms.csv", consent_file="consent.csv", flat_file="flatfile.csv",
+              export_file="flatfile_dataexport_consent.csv", header=True, enable_grafton_fallback=True)
+    # randomise_number(15.5)
