@@ -114,7 +114,7 @@ def anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file, header
         if header:
             header = False
             # writing
-            anonymised_data.write(anonymised_line)
+            anonymised_data.write(line)
             continue
         # if we have consent. Otherwise do nothing
         if consent_present(line, consent_list if len(consent_list) > 0 else pseudonyms_dict):
@@ -150,7 +150,7 @@ def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file, h
     for line in original_data_loaded:
         if header:
             header = False
-            anonymised_json_data.append(ast.literal_eval(anonymised_line))
+            anonymised_json_data.append(ast.literal_eval(line))
             continue    
 
         if consent_present(line, consent_list if len(consent_list) > 0 else pseudonyms_dict):
@@ -189,7 +189,7 @@ def anonymise_fallback(pseudonyms_dict, consent_list, flat_file, export_file, he
     while line:
         if header:
             header = False
-            anonymised_data.write(anonymised_line)
+            anonymised_data.write(line)
             continue
 
         if consent_present(line, consent_list if len(consent_list) > 0 else pseudonyms_dict):
