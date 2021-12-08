@@ -14,7 +14,7 @@ setuptools.setup(
     name='grafton',
     license="GNU GPLv3",
     description='grafton anonymises data in any input file using an encoding key and informed consent list.',
-    version='v0.1.7',
+    version='v0.1.8',
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/yForecasting/grafton',
