@@ -114,7 +114,6 @@ def anonymise_file(pseudonyms_dict, consent_list, flat_file, export_file, header
         if header:
             header = False
             # writing
-            anonymised_line = anonymise_text(line, pseudonyms_dict)
             anonymised_data.write(anonymised_line)
             continue
         # if we have consent. Otherwise do nothing
@@ -151,7 +150,6 @@ def anonymise_json_file(pseudonyms_dict, consent_list, flat_file, export_file, h
     for line in original_data_loaded:
         if header:
             header = False
-            anonymised_line = anonymise_text(line, pseudonyms_dict)
             anonymised_json_data.append(ast.literal_eval(anonymised_line))
             continue    
 
@@ -191,7 +189,6 @@ def anonymise_fallback(pseudonyms_dict, consent_list, flat_file, export_file, he
     while line:
         if header:
             header = False
-            anonymised_line = anonymise_text(line, pseudonyms_dict)
             anonymised_data.write(anonymised_line)
             continue
 
@@ -286,4 +283,4 @@ def anonymise(pseudonyms_file, consent_file, flat_file, export_file, header = Tr
 def main():
     # execute anonymisation process
     anonymise(pseudonyms_file="pseudonyms.csv", consent_file ="consent.csv", flat_file="flatfile.csv", export_file="flatfile_dataexport_consent.csv", header = True, enable_grafton_fallback=True)
-    randomise_number(15.5)
+    #randomise_number(15.5)
